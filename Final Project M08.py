@@ -152,7 +152,7 @@ class GradingCalculator:
         
         #Returns an error message to the user if there's an invalid input. 
         except Exception:
-            messagebox.showerror("ERROR", "Please enter a number.")
+            messagebox.showerror("ERROR", "Please enter a valid input.")
                                   
     #This method is a conversion for the grading scale.
     def points_to_letterGrade(self, average_letter_grade):
@@ -185,6 +185,11 @@ class GradingCalculator:
     def valid_letter_grade(self, letter_grade):
         valid_grades = ["A", "B", "C", "D", "F"] #This variable is for a list that stores the valid grade letters.
         return letter_grade.upper() in valid_grades
+    #This method is for grade point conversion.
+    def grade_points(self, letter_grade):
+        grade_points_map = {"A": 4.0, "A-": 3.7, "B+": 3.3, "B": 3.0, "B-": 2.7,
+                            "C+": 2.3, "C": 2.0, "C-": 1.7, "D+": 1.3, "D": 1.0, "D-": 0.7, "F": 0.0}
+        return grade_points_map.get(letter_grade.upper(), 0.0)
     
     #This method exits the loop.
     def exit_app(self):

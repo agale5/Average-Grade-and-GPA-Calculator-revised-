@@ -1,0 +1,9 @@
+#This will test to see if the error messages for each input entry will display:
+#Enter number of courses as a character (a or B).
+#Enter a integer or float for the letter grade entry (3 or 5.6).
+#Enter a character for the grade percentage entry as well as a value outside of the range (a or B; 111).
+#Enter a character for the input of course credits (a or B).
+
+
+By testing these inputs I discovered that the error type I had at first, which was Value Error was not executing for some reason. 
+So I tried Except Exception and that was able to execute all the error messages.

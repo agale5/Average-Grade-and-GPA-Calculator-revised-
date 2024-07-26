@@ -3,7 +3,7 @@ from tkinter import simpledialog, messagebox
 
 from PIL import ImageTk, Image
 
-
+#This method sets the instance, which instantiates the object).
 class GradingCalculator:
     def __init__(self, root):
         #Displays title at the top for the entry box.
@@ -16,7 +16,7 @@ class GradingCalculator:
        
         #Resizes the images.
         new_size = (100,100)
-        resized_image1 = image1.resize(new_size)
+        resized_image1 = image1.resize(new_size)#These variables are use to resize the images.
         resized_image2 = image2.resize(new_size)
 
         self.img1_tk = ImageTk.PhotoImage(resized_image1)
@@ -46,7 +46,7 @@ class GradingCalculator:
         self.label_courses_average.grid(row = 0, column = 0)
        
         #Creates the entry box for "Number of Courses" within the frame.
-        self.num_courses_average = tk.IntVar(value = 1)
+        self.num_courses_average = tk.IntVar(value = 1)#This variable is used to store the number of average courses.
         self.entry_courses_average = tk.Entry(self.frame_average, textvariable = self.num_courses_average)
         self.entry_courses_average.grid(row = 0, column = 1)
         
@@ -67,7 +67,7 @@ class GradingCalculator:
         self.label_courses_gpa.grid(row = 2, column = 0)
         
         #Creates entry box for "Number of Courses for GPA".
-        self.num_courses_gpa = tk.IntVar(value = 1)
+        self.num_courses_gpa = tk.IntVar(value = 1)#This variable is used to store the number of courses for the GPA.
         self.entry_courses_gpa = tk.Entry(self.frame_gpa, textvariable = self.num_courses_gpa)
         self.entry_courses_gpa.grid(row = 2, column = 1)
         
@@ -82,20 +82,20 @@ class GradingCalculator:
         #Displays a button to exit the application.
         self.exit_button = tk.Button(self.root, text = "Exit Calculator", command = self.exit_app)
         self.exit_button.pack()
-        
+    #Method calculates the average grade.    
     def calculate_average(self):
 
         #Use try-except for catching errors.
         try:
             #Retreive number of courses entered.
-            num_courses1 = self.num_courses_average.get()
+            num_courses1 = self.num_courses_average.get()#This variable stores the total grade percentage.
            
             #Initialize new variable: total_grades.
             total_grades = 0.0
             for i in range(num_courses1):
                 
                 #Create new entry box for entering the grade percentage for each course.
-                grade_percentage = simpledialog.askfloat(title="Grade Percentage", prompt = f"Enter your grade percentage for course {i + 1}: ")
+                grade_percentage = simpledialog.askfloat(title="Grade Percentage", prompt = f"Enter your grade percentage for course {i + 1}: ")#This variable stores the individual grade percentages for each course.
                 #Cancels the user's input.
                 if grade_percentage is None:
                     return
@@ -106,8 +106,8 @@ class GradingCalculator:
                 
                 #Calculation for grade average -->
                 total_grades += grade_percentage
-            average_grade = total_grades / num_courses1
-            average_letter_grade = self.points_to_letterGrade(average_grade)
+            average_grade = total_grades / num_courses1#This variable stores the average grade.
+            average_letter_grade = self.points_to_letterGrade(average_grade)#This variable is used for the final display of the results.
             
             #Display average grade result.
             self.average_grade_label.config(text = f"Average Grade: {round(average_grade, 2)}  = {average_letter_grade}")
@@ -120,13 +120,13 @@ class GradingCalculator:
         #Use try-except for catching errors.
         try:
             #Retreive number of courses entered.
-            num_courses2 = self.num_courses_gpa.get()
+            num_courses2 = self.num_courses_gpa.get()#This variable stores the number of course for GPA.
             #Initialize new variables: total_gradepoints and total_credits.
-            total_gradePoints = 0
-            total_credits = 0
+            total_gradePoints = 0#This variable tores the total grade points for the GPA calculation.
+            total_credits = 0#This variable stores the total credits for the GPA calculation.
             for i in range(num_courses2):
                 #Create new entry box for entering the letter grade for each course.
-                letter_grade = simpledialog.askstring(title = "Letter Grade", prompt = f"Enter your letter grade for course {i + 1}: ")
+                letter_grade = simpledialog.askstring(title = "Letter Grade", prompt = f"Enter your letter grade for course {i + 1}: ") #This variable stores the letter grade for the GPA calculation.
                 #Cancels the user's input.
                 if letter_grade is None:
                     return 
@@ -154,7 +154,7 @@ class GradingCalculator:
         except Exception:
             messagebox.showerror("ERROR", "Please enter a number.")
                                   
-    #Convertion for the grading scale.
+    #This method is a conversion for the grading scale.
     def points_to_letterGrade(self, average_letter_grade):
         if (average_letter_grade >= 92):
             return "A"
@@ -181,12 +181,12 @@ class GradingCalculator:
         else:
             return "F"
     
-    #Validator for checking letter grades.
+    #This method is a validator for checking letter grades.
     def valid_letter_grade(self, letter_grade):
-        valid_grades = ["A", "B", "C", "D", "F"]
+        valid_grades = ["A", "B", "C", "D", "F"] #This variable is for a list that stores the valid grade letters.
         return letter_grade.upper() in valid_grades
     
-    #Exits the loop.
+    #This method exits the loop.
     def exit_app(self):
         self.root.destroy()
     
